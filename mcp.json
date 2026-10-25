@@ -1,0 +1,60 @@
+{
+  "mcpServers": {
+    "michael-faraday-ai": {
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--quiet"
+      ],
+      "env": {
+        "RUST_LOG": "info",
+        "TITAN_PROTOCOL": "FARADAY",
+        "FIPS_203_LEVEL": "ML-KEM-768",
+        "FIPS_204_LEVEL": "ML-DSA-65"
+      },
+      "tools": [
+        {
+          "name": "calculate_induced_electromotive_force",
+          "description": "Solves Faraday's law of induction (EMF = - dPhi_B / dt) across dynamic magnetic flux topologies",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "flux_change_webers": {
+                "type": "number"
+              },
+              "time_delta_seconds": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "flux_change_webers"
+            ]
+          }
+        },
+        {
+          "name": "compute_electrochemical_deposition",
+          "description": "Calculates stoichiometric mass deposition on electrodes using Faraday constant (F = 96485 C/mol)",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "current_amperes": {
+                "type": "number"
+              },
+              "duration_seconds": {
+                "type": "number"
+              },
+              "molar_mass_g": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "current_amperes",
+              "duration_seconds"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
